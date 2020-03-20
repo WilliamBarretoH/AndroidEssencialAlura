@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,34 +12,43 @@ import com.example.agenda.R;
 import com.example.agenda.model.dao.AlunoDAO;
 import com.example.agenda.model.entity.Aluno;
 
-import java.io.Serializable;
-
 public class Form_Aluno_Activity extends AppCompatActivity {
 
-    public static final String titulo_appbar = "Novo aluno";
+    private static final String titulo_appbar_novo_aluno = "Novo aluno";
+    private static final String titulo_appbar_edita_aluno = "Edita aluno";
     private EditText campoNome;
     private EditText campoTelefone;
     private EditText campoEmail;
     final AlunoDAO alunoDAO = new AlunoDAO();
     private Aluno aluno;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form__aluno_);
-        setTitle(titulo_appbar);
+
         inicializacaoDosCampos();
         configuraBotaoSalvar();
+        carregaAlunoSeVazioOuNao();
+    }
 
+    private void carregaAlunoSeVazioOuNao() {
         Intent dados = getIntent();
         if(dados.hasExtra("aluno")) {
+            setTitle(titulo_appbar_edita_aluno);
             aluno = (Aluno) dados.getSerializableExtra("aluno");
-            campoNome.setText(aluno.getNome());
-            campoTelefone.setText(aluno.getTelefone());
-            campoEmail.setText(aluno.getEmail());
+            preencheCampos();
         }else{
+            setTitle(titulo_appbar_novo_aluno);
             aluno = new Aluno();
         }
+    }
+
+    private void preencheCampos() {
+        campoNome.setText(aluno.getNome());
+        campoTelefone.setText(aluno.getTelefone());
+        campoEmail.setText(aluno.getEmail());
     }
 
     private void configuraBotaoSalvar() {
@@ -48,8 +56,6 @@ public class Form_Aluno_Activity extends AppCompatActivity {
         botaoSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Aluno aluno = criaAluno();
-//                salvaAluno(aluno);
                 preencheAluno();
                 if(aluno.temIdValido()) {
                     alunoDAO.edita(aluno);
@@ -69,7 +75,6 @@ public class Form_Aluno_Activity extends AppCompatActivity {
 
     private void salvaAluno(Aluno aluno) {
         alunoDAO.salvar(aluno);
-
         finish();
     }
 

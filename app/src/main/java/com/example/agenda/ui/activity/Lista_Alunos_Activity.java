@@ -54,11 +54,13 @@ public class Lista_Alunos_Activity extends AppCompatActivity {
         ListView listaDeALunos = findViewById(R.id.activity_lista_de_alunos_list_view);
         final List<Aluno> alunos = alunoDao.getAlunos();
 
-        listaDeALunos.setAdapter(new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_list_item_1,
-                alunos));
+        configuraAdapterList(listaDeALunos, alunos);
 
+        configuraListenerDeCliquePorItem(listaDeALunos, alunos);
+
+    }
+
+    private void configuraListenerDeCliquePorItem(ListView listaDeALunos, final List<Aluno> alunos) {
         listaDeALunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -68,7 +70,13 @@ public class Lista_Alunos_Activity extends AppCompatActivity {
                 startActivity(vaiParaFormNovoAluno);
             }
         });
+    }
 
+    private void configuraAdapterList(ListView listaDeALunos, List<Aluno> alunos) {
+        listaDeALunos.setAdapter(new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_list_item_1,
+                alunos));
     }
 }
 
