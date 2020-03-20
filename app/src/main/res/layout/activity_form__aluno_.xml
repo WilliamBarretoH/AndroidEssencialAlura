@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.Form_Aluno_Activity">
+
+        <EditText android:id="@+id/activity_form_aluno_nome"
+            android:layout_width="match_parent"
+            android:layout_margin="8dp"
+            android:hint="Nome"
+            android:inputType="textCapWords"
+            android:layout_height="wrap_content"/>
+
+        <EditText android:id="@+id/activity_form_aluno_telefone"
+            android:layout_width="match_parent"
+            android:layout_margin="8dp"
+            android:hint="Telefone"
+            android:layout_height="wrap_content"/>
+
+        <EditText android:id="@+id/activity_form_aluno_email"
+            android:layout_width="match_parent"
+            android:layout_margin="8dp"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:layout_height="wrap_content"/>
+
+        <Button android:id="@+id/activity_form_aluno_botao_salvar"
+            android:layout_width="match_parent"
+            android:layout_margin="8dp"
+            android:text="salvar"
+            android:layout_height="wrap_content"/>
+
+</LinearLayout>
