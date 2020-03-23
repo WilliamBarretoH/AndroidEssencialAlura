@@ -10,26 +10,38 @@ public class AlunoDAO {
     private final static List<Aluno> alunos = new ArrayList<>();
     private static int contId = 1;
 
-    public void salvar(Aluno aluno) {
+    public void salva(Aluno aluno) {
         aluno.setId(contId);
         alunos.add(aluno);
         contId++;
     }
 
     public void edita(Aluno aluno){
-        Aluno alunoencontrado = null;
-        for (Aluno a: alunos) {
-            if(a.getId() == aluno.getId()){
-                alunoencontrado = a;
-            }
-        }
-        if(alunoencontrado != null){
-            int posicaoDoALuno = alunos.indexOf(alunoencontrado);
+        Aluno alunoEncontrado = buscaAlunoPeloId(aluno);
+        if(alunoEncontrado != null){
+            int posicaoDoALuno = alunos.indexOf(alunoEncontrado);
             alunos.set(posicaoDoALuno, aluno);
         }
     }
 
+    private Aluno buscaAlunoPeloId(Aluno aluno) {
+        for (Aluno a: alunos) {
+            if(a.getId() == aluno.getId()){
+                return a;
+            }
+        }
+        return null;
+    }
+
     public List<Aluno> getAlunos() {
         return new ArrayList<>(alunos);
+    }
+
+
+    public void remove(Aluno aluno) {
+        Aluno alunoDevolvido = buscaAlunoPeloId(aluno);
+        if(alunoDevolvido != null){
+            alunos.remove(alunoDevolvido);
+        }
     }
 }

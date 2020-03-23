@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.Lista_Alunos_Activity">
+    tools:context=".ui.activity.ListaAlunosActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/activity_lista_alunos_fab_novo_aluno"
