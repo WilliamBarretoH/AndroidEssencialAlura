@@ -111,7 +111,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
         listaDeALunos.setAdapter(adapter);
     }
 
-    private void deletarCaixaDeDialogo(final int position, final Aluno aluno){
+    private void deletarCaixaDeDialogo(final int position, final Aluno aluno) {
         new AlertDialog.Builder(this)
                 .setTitle("Deletando aluno")
                 .setMessage("Tem certeza que deseja deletar o aluno")
